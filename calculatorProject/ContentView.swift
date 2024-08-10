@@ -5,8 +5,6 @@
 //  Created by Matteo Gauvrit on 29/07/2024.
 //
 
-// Crash -- Si je fais 9 + . / le . s'ajoute au + et du coup au lieu de remplacer le + par le / il l'ajoute et a = ça crash pour mauvais index
-
 import SwiftUI
 
 struct HomeView: View {
@@ -85,6 +83,7 @@ struct ButtonGrid: View {
                     ForEach(buttons.flatMap { $0 }, id: \.self) { buttonTitle in
                         Button(action: {
                             print("\(buttonTitle) pressed")
+                            // Buttons reaction
                             switch buttonTitle {
                                 case "AC":
                                     index = 0
@@ -127,11 +126,11 @@ struct ButtonGrid: View {
                 .background(Color.black)
             }
         }
-        .edgesIgnoringSafeArea(.all) // Ignore safe areas if necessary
+        .edgesIgnoringSafeArea(.all)
     }
 
     private func fontSize(for size: CGSize) -> CGFloat {
-        // Calculer une taille de police qui s'adapte à la taille disponible
+        // Calcul font size
         let minFontSize: CGFloat = 10
         let maxFontSize: CGFloat = 75
         let availableSpace = min(size.width / 2, size.height / 2)
@@ -165,7 +164,7 @@ struct ButtonGrid: View {
         // Check if the button pressed is a number
         if isNumber(buttonTitle) {
             
-            // If the last element is a number or a dot, append the digit to the last number
+            // If the last element is a number or a ".", append the digit to the last number
             if !expression.isEmpty && (isNumber(expression.last!) || expression.last! == ".") {
                 expression[expression.count - 1] += buttonTitle
             } else {
@@ -216,7 +215,7 @@ struct ButtonGrid: View {
         var tmp: Double = 0
         var i: Int = 0
 
-        // Vérification de la validité de l'expression
+        // Verify if the expression is valid
         guard expression.count >= 3 else {
             print("Expression is incomplete.")
             index = 0
@@ -224,7 +223,7 @@ struct ButtonGrid: View {
             return "0"
         }
         
-        // Cette boucle gère les calculs prioritaires (* et /)
+        // Priority calculs (* & /)
         while i < expression.count {
             for n in 0...1 {
                 if dic1[n] == expression[i] {
@@ -233,7 +232,7 @@ struct ButtonGrid: View {
 
                     if expression[i] == "*" {
                         tmp = left * right
-                        // Vérification d'overflow en multipliant
+                        // Overflow check
                         if tmp.isInfinite || tmp.isNaN {
                             print("Overflow or NaN detected")
                             return "Error"
@@ -245,7 +244,6 @@ struct ButtonGrid: View {
                             return "Error"
                         }
                         tmp = left / right
-                        // Vérification d'overflow en divisant
                         if tmp.isInfinite || tmp.isNaN {
                             print("Overflow or NaN detected")
                             return "Error"
@@ -262,7 +260,7 @@ struct ButtonGrid: View {
         
         i = 0
         
-        // Cette boucle gère les calculs restants (+ et -)
+        // Remaining calculs (+ et -)
         while i < expression.count {
             for n in 0...1 {
                 if dic2[n] == expression[i] {
@@ -271,7 +269,6 @@ struct ButtonGrid: View {
 
                     if expression[i] == "+" {
                         tmp = left + right
-                        // Vérification d'overflow en additionnant
                         if tmp.isInfinite || tmp.isNaN {
                             print("Overflow or NaN detected")
                             return "Error"
@@ -279,7 +276,6 @@ struct ButtonGrid: View {
                     }
                     else if expression[i] == "-" {
                         tmp = left - right
-                        // Vérification d'overflow en soustrayant
                         if tmp.isInfinite || tmp.isNaN {
                             print("Overflow or NaN detected")
                             return "Error"
@@ -317,9 +313,3 @@ struct ContentView_Previews: PreviewProvider {
         HomeView()
     }
 }
-
-// How to use :
-// Cas Particuliers :
-// - Si on appuie sur "C" lorsqu'il ne reste qu'un seul element du tableau, on revient a l'index d'avant en supprimant l'actuel, pour eviter de laisser trainer un index vide dans le tableau qui ne sera de toute façon pas interpreté et causera des soucis.
-// - Mettre une expression en négatif n'est possible qu'avec le bouton (-x) UNIQUEMENT lorsqu'un premeir chiffre a déjà été rentré, pour eviter encore une fois un quelconque problème
-// - L'application se base sur la calculatrice Apple, donc en dehors de ces 2 cas, elle s'utilise et affiche relativement les même choses !
