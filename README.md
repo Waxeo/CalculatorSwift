@@ -18,4 +18,5 @@ Il y'a quelques spécificitéés liées a des problèmes rencontrés lors du dé
 
 ## Affichage
 
-<img width="832" alt="Calculatrice" src="https://github.com/user-attachments/assets/1bad5f9b-96f2-41b2-b443-d8f8e830c41f">
+<img width="721" alt="Calculatrice" src="https://github.com/user-attachments/assets/f642860f-ed93-45a9-949e-5c8249633441">
+
