@@ -1,7 +1,7 @@
 # CalculatorSwift
 
 Première approche du langage Swift dans le cadre des projets proposés par l'école 42, il s'agit d'une calculatrice fonctionelle. 
-J'ai fais le choix de me baser sur la calculatrice Apple, notamment dans l'affichage des gestions d'erreurs liées aux overflows, une mauvaise expression ou encore une division par 0. 
+J'ai fais le choix de me baser sur la calculatrice Apple (en prenant en compte les contraintes imposées par l'école comme d'avoir une zone d'expression et une zone de résultats), notamment dans l'affichage des gestions d'erreurs liées aux overflows, une mauvaise expression ou encore une division par 0. 
 
 Bien que le rendu et la structure sont améliorables je suis content de cette première approche avec le langage, il se prend en main facilement (2 jours pour recherches + code fonctionnel) et est très agréable a manipuler !
 
@@ -17,3 +17,5 @@ Il y'a quelques spécificitéés liées a des problèmes rencontrés lors du dé
 - Pour le reste de son utilisation globale, elle s'utilise comme celle développée par Apple.
 
 ## Affichage
+
+<img width="832" alt="Calculatrice" src="https://github.com/user-attachments/assets/1bad5f9b-96f2-41b2-b443-d8f8e830c41f">
